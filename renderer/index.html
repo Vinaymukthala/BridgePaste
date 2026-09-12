@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BridgePaste — Secure Clipboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">B</div>
+        <div>
+          <b>BridgePaste</b>
+          <span>Enterprise clipboard</span>
+        </div>
+      </div>
+
+      <nav class="nav-list" aria-label="Primary">
+        <button class="nav active" data-view="home">
+          <span class="icon">⌂</span><span>Home</span>
+        </button>
+        <button class="nav" data-view="history">
+          <span class="icon">▣</span><span>History</span>
+          <span class="count" id="navHistoryCount">0</span>
+        </button>
+        <button class="nav" data-view="favorites">
+          <span class="icon">★</span><span>Favorites</span>
+          <span class="count" id="navFavCount">0</span>
+        </button>
+        <button class="nav" data-view="activity">
+          <span class="icon">☰</span><span>Activity</span>
+        </button>
+        <button class="nav" data-view="security">
+          <span class="icon">◈</span><span>Security</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="status-card" id="monitorStatus">
+          <span class="dot on" id="statusDot"></span>
+          <div>
+            <b id="statusLabel">Monitoring active</b>
+            <small>Clipboard protected on this device</small>
+          </div>
+        </div>
+
+        <div class="account-wrap">
+          <button class="account-btn" id="accountBtn" type="button" aria-haspopup="true" aria-expanded="false">
+            <span class="account-avatar" id="accountAvatar">A</span>
+            <span class="account-meta">
+              <b id="accountTitle">Account</b>
+              <small id="accountSubtitle">Sign in for sync</small>
+            </span>
+            <span class="account-caret">▾</span>
+          </button>
+
+          <div class="account-menu" id="accountMenu" hidden>
+            <button type="button" data-account-action="profile">Profile</button>
+            <button type="button" data-account-action="settings">Settings</button>
+            <button type="button" data-account-action="help">Help</button>
+            <div class="account-menu-sep"></div>
+            <button type="button" class="danger-text" data-account-action="logout" id="accountLogoutBtn">Log out</button>
+            <button type="button" data-account-action="login" id="accountLoginBtn" hidden>Sign in</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <header>
+        <div>
+          <p class="eyebrow" id="eyebrow">WORKSPACE</p>
+          <h1 id="title">Clipboard</h1>
+        </div>
+        <div class="header-actions">
+          <button class="ghost" id="pauseBtn" title="Pause or resume monitoring">Ⅱ Pause</button>
+          <button class="ghost" id="captureBtn" title="Force-capture current clipboard">↧ Capture</button>
+          <button class="primary" id="shortcutBtn" title="Open quick picker">Ctrl ⇧ V</button>
+        </div>
+      </header>
+
+      <section id="content"></section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card">
+      <h3 id="modalTitle">Confirm</h3>
+      <p id="modalBody"></p>
+      <div class="modal-actions">
+        <button class="ghost" id="modalCancel">Cancel</button>
+        <button class="danger" id="modalConfirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="authGate" class="auth-gate" hidden>
+    <div class="auth-card">
+      <div class="logo">B</div>
+      <h2>Sign in to BridgePaste</h2>
+      <p class="lead">Access your secure clipboard workspace. History stays on this device unless you sync.</p>
+
+      <div class="auth-tabs">
+        <button class="chip active" data-auth-mode="login">Sign in</button>
+        <button class="chip" data-auth-mode="register">Create account</button>
+      </div>
+
+      <div id="authNameWrap" hidden>
+        <label class="field-label" for="authName">Full name</label>
+        <input id="authName" class="search auth-input" placeholder="Alex Morgan" autocomplete="name">
+      </div>
+
+      <label class="field-label" for="authEmail">Work email</label>
+      <input id="authEmail" type="email" class="search auth-input" placeholder="you@company.com" autocomplete="username">
+
+      <label class="field-label" for="authPassword">Password</label>
+      <input id="authPassword" type="password" class="search auth-input" placeholder="Enter password" autocomplete="current-password">
+
+      <div class="auth-actions">
+        <button class="primary" id="authSubmit">Sign in</button>
+        <button class="ghost" id="authLocal">Continue as guest</button>
+      </div>
+      <div class="auth-msg" id="authMsg"></div>
+      <p class="auth-footnote">Protected by local-only storage and sensitive-content filtering.</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

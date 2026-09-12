@@ -1,0 +1,38 @@
+{
+    "name": "bridgepaste",
+    "version": "0.1.0",
+    "description": "Secure clipboard manager for Windows and permitted virtual desktop workflows",
+    "main": "electron/main.js",
+    "author": "BridgePaste",
+    "license": "MIT",
+    "scripts": {
+        "start": "electron .",
+        "dev": "electron .",
+        "build": "electron-builder --win",
+        "kill": "node scripts/kill-port.js"
+    },
+    "devDependencies": {
+        "electron": "^38.8.6",
+        "electron-builder": "^26.0.0"
+    },
+    "build": {
+        "appId": "com.bridgepaste.app",
+        "productName": "BridgePaste",
+        "directories": {
+            "output": "dist"
+        },
+        "files": [
+            "**/*",
+            "!dist/**"
+        ],
+        "win": {
+            "target": [
+                "nsis"
+            ],
+            "icon": "assets/icon.png"
+        }
+    },
+    "dependencies": {
+        "electron-store": "^8.2.0"
+    }
+}

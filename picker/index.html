@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BridgePaste Picker</title>
+  <link rel="stylesheet" href="picker.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <div class="brand">BridgePaste</div>
+        <div class="subtitle">Quick clipboard · ↑↓ Enter Esc · Del delete · ★ favorite</div>
+      </div>
+      <div class="shortcut">CTRL + SHIFT + V</div>
+    </div>
+
+    <input id="search" autofocus placeholder="Search clipboard…" spellcheck="false">
+
+    <div class="filters" id="filters"></div>
+
+    <div id="items"></div>
+
+    <div class="footer">
+      <span>↑ ↓ Navigate</span>
+      <span>Enter Copy</span>
+      <span>Ctrl+★ Favorite</span>
+      <span>Del Delete</span>
+      <span>Esc Close</span>
+    </div>
+  </div>
+
+  <script src="picker.js"></script>
+</body>
+</html>
